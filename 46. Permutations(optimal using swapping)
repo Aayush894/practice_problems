@@ -1,0 +1,28 @@
+From <https://leetcode.com/problems/permutations/description/?envType=study-plan-v2&envId=top-interview-150>
+
+class Solution {
+public:
+    vector<vector<int>> permute(vector<int>& nums) {
+        vector<vector<int>> ans ; 
+        int index = 0 ; 
+        solve(nums,index,ans) ;
+        return ans ; 
+    }
+private: 
+/* apply backtracking with swapping concept */ 
+    void solve(vector<int> nums,int index,vector<vector<int>> &ans){
+        if(index == nums.size()-1) //base case 
+        {
+            ans.push_back(nums) ; //add result in the ans
+            return ; 
+        }
+        for(int i = index ;i < nums.size();i++) 
+        {
+           swap(nums[index],nums[i]) ; // give the chance to every number for the first index
+           solve(nums,index+1,ans) ; // increase the index 
+           swap(nums[index],nums[i]) ; //nutralise the swap used previously to get the original string 
+        }
+    }
+};
+
+From <https://leetcode.com/problems/permutations/submissions/963025817/?envType=study-plan-v2&envId=top-interview-150> 
